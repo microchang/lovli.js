@@ -59,6 +59,12 @@ module.exports = {
         loader: 'style!css',
         include: path.join(staticPath, 'vendor')
       },
+      
+      //handle inline css files in /source/client/components/tasks/Line.js  -todo 
+      {
+         test: /\.(css)$/,
+        loader: 'style!css',
+      },
       {
         name: 'local-css-config',
         // css inside the source folder will be localized by default. see https://github.com/css-modules/css-modules
