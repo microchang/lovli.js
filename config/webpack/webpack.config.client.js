@@ -60,10 +60,11 @@ module.exports = {
         include: path.join(staticPath, 'vendor')
       },
       
-      //handle inline css files in /source/client/components/tasks/Line.js  -todo 
+      //handle inline css files in /source/client/components/task/Line.js  -todo 
       {
          test: /\.(css)$/,
-        loader: 'style!css',
+         loader: 'style!css',
+          include: path.join(staticPath, '../node_modules/antd/dist/')
       },
       {
         name: 'local-css-config',

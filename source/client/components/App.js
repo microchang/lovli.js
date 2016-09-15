@@ -9,7 +9,7 @@ import Table from './task/Table';
 
 const App = () => (
   <div>
-   <Table />
+    <Table />
   </div>
 );
 export default App;

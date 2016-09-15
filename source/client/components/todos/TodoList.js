@@ -6,7 +6,7 @@ import TodoItem from './TodoItem';
 import styles from './styles';
 
 const mapDataToProps = {
-  todos: (hz, props) => hz('todos').limit(props.limit)
+  todos: (hz, props) => hz('tasks').limit(props.limit)
 };
 
 const TodoList = (props) => (

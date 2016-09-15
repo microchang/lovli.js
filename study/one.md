@@ -10,7 +10,7 @@
 3. 基础概念描述：
     + RethinkDB:一个擅长构建实时应用的数据库，语法上有点类似于mongo，各种链式调用；
     + Horizon：一个擅长处理实时任务的Node.js框架（有点类似于socket.io？），和 RethinkDB同出一门，使用一个结构化的语言当配置文件（!= =名字好中二）；订阅监控状态来实时反应；
-    + lovli.js： 一个让人上手实时开发的demo，后端是express配Horizon，前段是react全家桶配Horizon；
+    + lovli.js： 一个让人上手实时开发的demo，后端是express配Horizon，前段是react全家桶配Horizon-react；
     + Ant Design：一个看起来挺棒的前端设计解决方案和UI组件合集～
 
 #### 明日预备
