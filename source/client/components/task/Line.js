@@ -2,6 +2,7 @@ import React, { Component }from 'react';
 import { subscribe } from 'horizon-react';
 import 'antd/dist/antd.css'; //todo: need transform to babel plugins
 import { Row, Col, Input, Select, message, DatePicker, Radio} from 'antd';
+import { createDoc } from 'horizon-react/lib/utils';
 
 
 class Line extends Component {
@@ -27,9 +28,11 @@ class Line extends Component {
   saveOrUpdateTask() {
     const {horizon} = this.props;
     const {task} = this.state;
-    var a=1;
     if (task.name + task.occupation + task.tags + task.gender) {
-     horizon('tasks').store(task);
+
+      console.log(task);
+      const collection = horizon('tasks');
+      createDoc(collection, task);
     }
   }
 
@@ -39,17 +42,15 @@ class Line extends Component {
     task[type] = e.target.value;
     this.setState({
       task: task
-    });
+    }, this.saveOrUpdateTask);
   }
-
-
 
   changeTaskByValue(value) {
     let {task} = this.state;
     task.occupation = value;
     this.setState({
       task: task
-    });
+    }, this.saveOrUpdateTask);
   }
 
   changeTaskTags(newTag) {
@@ -58,15 +59,20 @@ class Line extends Component {
     task.tags.push(newTag);
     this.setState({
       task: task
-    });
+    }, this.saveOrUpdateTask);
   }
 
+  //https://github.com/flipace/horizon-react/blob/91b06795e3d844287afdf72bc19d55d69f3a0843/src/components/subscribe.js#L60
+  //否则报waring  
+  componentWillUnmount() {
+    // make sure to dispose all subscriptions
+    this.unsubscribe();
+  }
 
   render() {
     const Option = Select.Option;
     const RadioGroup = Radio.Group;
     const {task} = this.state;
-
     let children = task.tags && task.tags.length ? task.tags.forEach((value, key) => {
       return <Option key={key} value={value}>value</Option>
     })
@@ -78,7 +84,7 @@ class Line extends Component {
       <div className=''>
         <Row gutter={16}>
           <Col span={6}  className="gutter-row">
-            <Input  placeholder='姓名' value= {task.name}  data-type='name' onChange={this.changeTask} onBlur = {this.saveOrUpdateTask}/>
+            <Input  placeholder='姓名' value= {task.name}  data-type='name' onChange={this.changeTask} />
           </Col>
           <Col span={6} className="gutter-row">
             <Select value={task.occupation} style={{ width: '100%' }}  data-type='occupation' onSelect={this.changeTaskByValue } >
@@ -115,4 +121,4 @@ class Line extends Component {
 }
 
 
-export default subscribe()(Line);
+export default (Line);

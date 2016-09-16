@@ -13,17 +13,13 @@ class Table extends Component {
 
   render() {
     let {tasks, horizon} = this.props;
+    //bug here? 
+    //取出来的tasksList，为何有不完整的选项混入？
     
-    //bug here
-    tasks.forEach((task,id) => {
-      if (task.name && !task.id) {
-        console.log(id);
-      }
-    })
-    
-    while (tasks.length < 4) {
+    while (tasks.length < 3) {
       tasks.push({});
     }
+    tasks.push({});
    
     return <div>
       {
@@ -31,6 +27,7 @@ class Table extends Component {
           return <Line
             key={key}  
             task = {task}
+            horizon = {horizon}
             />
         })
       }
